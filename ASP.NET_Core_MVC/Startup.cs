@@ -25,6 +25,15 @@ namespace ASP.NET_Core_MVC
                 app.UseDeveloperExceptionPage();
             }
 
+            if(env.IsProduction())
+            {
+                app.Run(async (context) =>
+                {
+                    await context.Response.WriteAsync("Production");
+                });
+            }
+
+
             app.Run(async (context) =>
             {
                 await context.Response.WriteAsync("Hello World!");
