@@ -31,7 +31,13 @@ namespace ASP.NET_Core_MVC
 
             services.AddTransient<IAllCars,CarRepository>();
             services.AddTransient<ICarsCategory,CategoryRepository>();
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped(sp => ShopCart.GetCart(sp));
+
             services.AddMvc();
+            services.AddMemoryCache();
+            services.AddSession();
            // services.AddMvc(options => options.EnableEndpointRouting = false);
         }
 
@@ -41,6 +47,8 @@ namespace ASP.NET_Core_MVC
             app.UseDeveloperExceptionPage();
             app.UseStatusCodePages();
             app.UseStaticFiles();
+            app.UseSession();
+
             app.UseMvcWithDefaultRoute(); //default controller
            
             using (var scope = app.ApplicationServices.CreateScope())
