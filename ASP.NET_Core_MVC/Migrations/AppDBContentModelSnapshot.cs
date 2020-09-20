@@ -63,6 +63,50 @@ namespace ASP.NET_Core_MVC.Migrations
                     b.ToTable("Category");
                 });
 
+            modelBuilder.Entity("ASP.NET_Core_MVC.Data.Models.Order", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("adress");
+
+                    b.Property<string>("email");
+
+                    b.Property<string>("name");
+
+                    b.Property<DateTime>("orderTime");
+
+                    b.Property<string>("phone");
+
+                    b.Property<string>("surname");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Order");
+                });
+
+            modelBuilder.Entity("ASP.NET_Core_MVC.Data.Models.OrderDet", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CarID");
+
+                    b.Property<int>("orderID");
+
+                    b.Property<long>("price");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("CarID");
+
+                    b.HasIndex("orderID");
+
+                    b.ToTable("OrderDetail");
+                });
+
             modelBuilder.Entity("ASP.NET_Core_MVC.Data.Models.ShopCartItem", b =>
                 {
                     b.Property<int>("id")
@@ -87,6 +131,19 @@ namespace ASP.NET_Core_MVC.Migrations
                     b.HasOne("ASP.NET_Core_MVC.Data.Models.Category", "Category")
                         .WithMany("cars")
                         .HasForeignKey("CategoryID")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("ASP.NET_Core_MVC.Data.Models.OrderDet", b =>
+                {
+                    b.HasOne("ASP.NET_Core_MVC.Data.Models.Car", "car")
+                        .WithMany()
+                        .HasForeignKey("CarID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("ASP.NET_Core_MVC.Data.Models.Order", "order")
+                        .WithMany("orderDetails")
+                        .HasForeignKey("orderID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

@@ -19,7 +19,8 @@ namespace ASP.NET_Core_MVC.Data
         public DbSet<Category> Category { get; set; }
         public DbSet<ShopCartItem> shopCartItems { get; set; }
 
-
+        public DbSet<Order> Order { get; set; }
+        public DbSet<OrderDet> OrderDetail { get; set; }
 
     }
 }

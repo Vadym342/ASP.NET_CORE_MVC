@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using ASP.NET_Core_MVC.Data;
 using ASP.NET_Core_MVC.Data.Interfaces;
-using ASP.NET_Core_MVC.Data.mocks;
 using ASP.NET_Core_MVC.Data.Models;
 using ASP.NET_Core_MVC.Data.Repository;
 using Microsoft.AspNetCore.Builder;
@@ -30,8 +29,8 @@ namespace ASP.NET_Core_MVC
             services.AddDbContext<AppDBContent>(options => options.UseSqlServer(_confString.GetConnectionString("DefaultConnection"))); //The added service will show which Sql server we use
 
             services.AddTransient<IAllCars,CarRepository>();
-            services.AddTransient<ICarsCategory,CategoryRepository>();
-
+            services.AddTransient<ICarsCategory,CategoryRepository>();  //show  interfaces which we use in class
+            services.AddTransient<IAllOrders, OrdersRepository>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped(sp => ShopCart.GetCart(sp));
 
