@@ -49,8 +49,14 @@ namespace ASP.NET_Core_MVC
             app.UseStaticFiles();
             app.UseSession();
 
-            app.UseMvcWithDefaultRoute(); //default controller
-           
+            //app.UseMvcWithDefaultRoute(); //default controller
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
+                routes.MapRoute(name: "categoryFilter", template: "Car/{action}/{category?}", defaults: new { Controller = "Car", action = "List" });
+            });
+
+
             using (var scope = app.ApplicationServices.CreateScope())
             {
               AppDBContent  content = scope.ServiceProvider.GetRequiredService<AppDBContent>();

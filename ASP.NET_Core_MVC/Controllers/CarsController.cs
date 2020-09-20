@@ -1,4 +1,5 @@
 ﻿using ASP.NET_Core_MVC.Data.Interfaces;
+using ASP.NET_Core_MVC.Data.Models;
 using ASP.NET_Core_MVC.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -19,16 +20,51 @@ namespace ASP.NET_Core_MVC.Controllers
             _carsCategory = iCarCat;
         }
 
-        public ViewResult List()
+
+        [Route("Cars/List")]
+        [Route("Cars/List/{category}")]
+        public ViewResult List(string category)
         {
-            ViewBag.Title = "Page with cars";
-            CarListViewModel obj = new CarListViewModel();
-            obj.AllCars = _allCars.Cars;
-            obj.currCategory = "Cars";
+            string _category = category;
+            IEnumerable<Car> cars = null;
+            string currCategory = "";
+            if (string.IsNullOrEmpty(category))
+            {
+                cars = _allCars.Cars.OrderBy(i => i.id);
+            }
+            else
+            {
+                if (string.Equals("Electro", category, StringComparison.OrdinalIgnoreCase))
+                {
+                    cars = _allCars.Cars.Where(i => i.Category.categoryName.Equals("Electro Cars")).OrderBy(i => i.id);
+                    currCategory = "Electro";
+                }
+                else
+                {
+                    if (string.Equals("TDI", category, StringComparison.OrdinalIgnoreCase))
+                    {
+                        cars = _allCars.Cars.Where(i => i.Category.categoryName.Equals("DTI")).OrderBy(i => i.id);
+                        currCategory = "TDI";
+                    }
+                   
 
-            return View(obj);
+
+                }
+
+            }
+                var CarObj = new CarListViewModel
+                {
+                    AllCars = cars,
+                    currCategory = currCategory
+                };
+
+                ViewBag.Title = "Page with cars";
+
+
+                return View(CarObj);
+            
+
+
         }
-
-
     }
 }

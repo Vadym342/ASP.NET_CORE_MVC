@@ -23,7 +23,7 @@ namespace ASP.NET_Core_MVC.Data
             {
                 content.AddRange(
                     new Car { name = "Tesla", shortDesc = "Electro, so fast ", longDesc = "New type of electro car whick can ride with speed more than 300k/h ", img = "https://autoreview.ru/images/Article/1700/Article_170068_860_575.jpg", price = 45000, isFavourite = true, avaible = true, Category = Categories["Electro Cars"] },
-                    new Car { name = "Land Cruiser", shortDesc = "Bisnes class", longDesc = "So comfortable auto for drive", img = "https://s.auto.drom.ru/i24207/c/photos/fullsize/toyota/land_cruiser/toyota_land_cruiser_699944.jpg", price = 100000, isFavourite = true, avaible = true, Category = Categories["DTI"] }
+                    new Car { name = "Land Cruiser", shortDesc = "Bisnes class", longDesc = "So comfortable auto for drive", img = "https://s.auto.drom.ru/i24207/c/photos/fullsize/toyota/land_cruiser/toyota_land_cruiser_699944.jpg", price = 100000, isFavourite = true, avaible = true, Category = Categories["TDI"] }
 
 
                     );
@@ -43,7 +43,7 @@ namespace ASP.NET_Core_MVC.Data
                 {
                     var list = new Category[] {
                         new Category{categoryName="Electro Cars", description="New kind cars"},
-                        new Category{ categoryName="DTI", description="Usual cars"}
+                        new Category{ categoryName="TDI", description="Usual cars"}
 
                     };
                     category = new Dictionary<string, Category>();
