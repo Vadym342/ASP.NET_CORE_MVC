@@ -43,7 +43,7 @@ namespace ASP.NET_Core_MVC.Controllers
                 {
                     if (string.Equals("TDI", category, StringComparison.OrdinalIgnoreCase))
                     {
-                        cars = _allCars.Cars.Where(i => i.Category.categoryName.Equals("DTI")).OrderBy(i => i.id);
+                        cars = _allCars.Cars.Where(i => i.Category.categoryName.Equals("TDI")).OrderBy(i => i.id);
                         currCategory = "TDI";
                     }
                    
