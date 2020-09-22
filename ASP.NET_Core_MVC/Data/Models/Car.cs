@@ -8,7 +8,7 @@ namespace ASP.NET_Core_MVC.Data.Models
     public class Car
     {
         public int id { get; set; }
-
+        
         public string name { get; set; }
         public string shortDesc { get; set; }
         public string longDesc { get; set; }
