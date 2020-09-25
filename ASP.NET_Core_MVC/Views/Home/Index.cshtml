@@ -1,18 +1,21 @@
 ﻿@model HomeViewModel
-    <div class="album py-5 ">
-        <div class="container">
-            <div class="row">
-                @{
-                    foreach (Car car in Model.favCars)
-                    {
-                        @Html.Partial("AllCars", car)
 
-                    }
+@Html.Partial("Carousel_Card")
+<div class="album py-5 ">
+    <div class="container mt-5">
+        <div class="row">
+            @{
+                foreach (Car car in Model.favCars)
+                {
+
+                    @Html.Partial("AllCars", car)
+
                 }
-            </div>
-
+            }
         </div>
+
     </div>
-  
+</div>
+
 
 

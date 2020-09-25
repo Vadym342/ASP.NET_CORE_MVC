@@ -7,9 +7,14 @@ namespace ASP.NET_Core_MVC.Data.Models
 {
     public class Comment
     {
-        int id { get; set; }
+        public int id { get; set; }
+        public string message { get; set; }
+        
+        public int rating { get; set; }
 
-        string message { get; set; }
+        public int countLike { get; set; }
+
+        public int countDisLike { get; set; }
 
 
     }

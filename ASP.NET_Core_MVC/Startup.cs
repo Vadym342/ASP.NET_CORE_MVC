@@ -27,7 +27,7 @@ namespace ASP.NET_Core_MVC
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppDBContent>(options => options.UseSqlServer(_confString.GetConnectionString("DefaultConnection"))); //The added service will show which Sql server we use
-
+           //  services.AddRazorPages();
             services.AddTransient<IAllCars,CarRepository>();
             services.AddTransient<ICarsCategory,CategoryRepository>();  //show  interfaces which we use in class
             services.AddTransient<IAllOrders, OrdersRepository>();
@@ -48,6 +48,8 @@ namespace ASP.NET_Core_MVC
             app.UseStaticFiles();
             app.UseSession();
 
+            //app.UseAuthentication();
+            //app.UseAutherization();
             //app.UseMvcWithDefaultRoute(); //default controller
             app.UseMvc(routes =>
             {
